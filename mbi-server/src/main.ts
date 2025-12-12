@@ -9,7 +9,7 @@ const bootstrap = async () => {
         options: {
             package: 'user',
             protoPath: path.join(__dirname, 'proto/user.proto'),
-            url: 'localhost:5000'
+            url: '0.0.0.0:50052',
         },
     });
 
