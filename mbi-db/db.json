@@ -1,0 +1,20 @@
+{
+  "users": [
+    {
+      "id": "df8f",
+      "firstName": "Patrik",
+      "lastName": "Zapletal",
+      "companyName": "MBI",
+      "email": "test@email.cz",
+      "password": "haShEDPWD"
+    },
+    {
+      "id": "d096",
+      "firstName": "Patrik",
+      "lastName": "Zapletal",
+      "companyName": "MBI",
+      "email": "test@email.cz",
+      "password": "haShEDPWD"
+    }
+  ]
+}

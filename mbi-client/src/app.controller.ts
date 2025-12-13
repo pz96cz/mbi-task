@@ -13,6 +13,12 @@ export class AppController {
 
     @Get()
     getHello() {
-        return this.usersService.insertUser({});
+        return this.usersService.insertUser({
+            firstName: 'Patrik',
+            lastName: 'Zapletal',
+            companyName: 'MBI',
+            email: 'test@email.cz',
+            password: 'haShEDPWD'
+        });
     }
 }

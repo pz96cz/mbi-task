@@ -3,9 +3,18 @@ syntax = "proto3";
 package user;
 
 service UsersService {
-  rpc InsertUser(UserId) returns (UserId) {}
+  rpc InsertUser(UserRequest) returns (UserResponse) {}
 }
 
-message UserId {
-  string message = 1;
+message UserRequest {
+  string firstName = 1;
+  string lastName = 2;
+  string companyName = 3;
+  string email = 4;
+  string password = 5;
+
+}
+
+message UserResponse {
+  string id = 1;
 }
