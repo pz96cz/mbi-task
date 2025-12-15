@@ -1,20 +1,28 @@
 {
   "users": [
     {
-      "id": "df8f",
+      "id": "c597",
       "firstName": "Patrik",
       "lastName": "Zapletal",
       "companyName": "MBI",
-      "email": "test@email.cz",
-      "password": "haShEDPWD"
+      "email": "email@email.cz",
+      "password": "hashedPassword"
     },
     {
-      "id": "d096",
+      "id": 2,
       "firstName": "Patrik",
       "lastName": "Zapletal",
       "companyName": "MBI",
-      "email": "test@email.cz",
-      "password": "haShEDPWD"
+      "email": "email@email32.cz",
+      "password": "hashedPassword"
+    },
+    {
+      "id": 2,
+      "firstName": "Patrik",
+      "lastName": "Zapletal",
+      "companyName": "MBI",
+      "email": "email@email32.cz",
+      "password": "hashedPassword"
     }
   ]
 }
