@@ -2,12 +2,12 @@
 
 import type { User as _user_User, User__Output as _user_User__Output } from '../user/User';
 
-export interface UserResponse {
-  'user'?: (_user_User | null);
+export interface UsersResponse {
+  'users'?: (_user_User)[];
   'errors'?: (string)[];
 }
 
-export interface UserResponse__Output {
-  'user'?: (_user_User__Output);
+export interface UsersResponse__Output {
+  'users'?: (_user_User__Output)[];
   'errors'?: (string)[];
 }

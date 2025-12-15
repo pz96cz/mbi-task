@@ -4,6 +4,10 @@ package user;
 
 service UsersService {
   rpc InsertUser(User) returns (UserResponse) {}
+  rpc InsertUsers(UsersRequest) returns (UsersResponse) {}
+  rpc GetUser(GetUserRequest) returns (UserResponse) {}
+  rpc GetUsers(GetUsersBatchRequest) returns(UserResponse) {}
+  rpc LoginRequest(LoginRequest) returns(LoginResponse) {}
 }
 
 message User {
@@ -15,7 +19,36 @@ message User {
   string password = 6;
 }
 
+message UsersRequest {
+  repeated User users = 1;
+}
+
+message UsersResponse {
+  repeated User users = 1;
+  repeated string errors = 2;
+}
+
 message UserResponse {
-  User payload = 1;
+  User user = 1;
+  repeated string errors = 2;
+}
+
+message GetUserRequest {
+  int32 userId = 1;
+}
+
+message GetUsersBatchRequest {
+  int32 count = 1;
+  int32 page = 2;
+}
+
+message LoginRequest {
+  string email = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  string token = 1;
+  repeated string errors = 2;
 }
 

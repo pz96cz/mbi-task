@@ -1,9 +1,12 @@
 import { User } from "../proto/user/User";
 import DatabaseService from "./databaseService";
 import databaseService from "./databaseService";
+import { UserResponse } from "../proto/user/UserResponse";
+import {UsersResponse} from "../proto/user/UsersResponse";
 
 interface IUserService {
-    insertUser(user: User): Promise<User>;
+    insertUser(user: User): Promise<UserResponse>;
+    insertUsers(users: User[]): Promise<UsersResponse>;
 }
 
 const isEmailAlreadyTaken = async (email: string | undefined): Promise<boolean> => {
@@ -24,18 +27,69 @@ const UserService: IUserService = {
      *
      * @param user user to be inserted, id is ignored
      */
-    insertUser: async (user) => {
-        const { email } = user;
+    insertUser: async (user: User) => {
+        try {
+            const { email } = user;
+            const isEmailTaken = await isEmailAlreadyTaken(email);
 
-        const isEmailTaken = await isEmailAlreadyTaken(email);
+            if (!isEmailTaken) {
+                const { data } = await databaseService.insert<User>('users', {id: undefined, ...user});
 
-        if (!isEmailTaken) {
-            const { data } = await databaseService.insert<User>('users', {id: undefined, ...user});
+                return {
+                    user: data,
+                    errors: [] as string[]
+                }
+            }
 
-            return data;
+            return {
+                user: null,
+                errors: [`User with email: ${email} already exists.`]
+            }
         }
+        catch (err) {
+            return {
+                user: null,
+                errors: [JSON.stringify(err)]
+            }
+        }
+    },
+    insertUsers: async (users: User[]): Promise<UsersResponse> => {
+        try {
+            const errors = [];
+            const insertedUsers: User[] = [];
 
-        return {}
+            for (const user of users) {
+                const { email } = user;
+
+                if (!email) {
+                    errors.push('Email not provided.');
+                    continue;
+                }
+
+                const isEmailTaken = await isEmailAlreadyTaken(email);
+
+                if (!isEmailTaken) {
+                    const { data } = await databaseService.insert<User>('users', {id: undefined, ...user});
+
+                    insertedUsers.push(data);
+                }
+                else {
+                    errors.push(`User with email: ${email} already exists.`);
+                }
+
+            }
+
+            return {
+                users: insertedUsers,
+                errors
+            }
+        }
+        catch (err) {
+            return {
+                users: [],
+                errors: [`There was an error when performing batch insert. Details: ${err}`]
+            }
+        }
     }
 }
 
