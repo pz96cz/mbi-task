@@ -10,7 +10,7 @@ const isEmailAlreadyTaken = async (email: string | undefined): Promise<boolean> 
     try {
         const { data } = await DatabaseService.select<User>('users', `email=${email}`);
 
-        return !data.length;
+        return !!data.length;
     }
     catch (err) {
         return false;
@@ -22,9 +22,9 @@ const UserService: IUserService = {
      * This function checks whether user with provided email exists, if not it performs an insert and
      * returns the record from db.
      *
-     * @param user
+     * @param user user to be inserted, id is ignored
      */
-    insertUser: async (user: User): Promise<User> => {
+    insertUser: async (user) => {
         const { email } = user;
 
         const isEmailTaken = await isEmailAlreadyTaken(email);

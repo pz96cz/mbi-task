@@ -3,7 +3,7 @@ import { credentials, loadPackageDefinition } from '@grpc/grpc-js';
 import { loadSync } from "@grpc/proto-loader";
 import { ProtoGrpcType as UserGrpcType } from '../proto/user';
 import * as path from "node:path";
-import {User} from "../proto/user/User";
+import {ImportService} from "../service/importService";
 
 const PORT = 8081;
 
@@ -14,25 +14,12 @@ const client = new packageGrpc.user.UsersService(
     `0.0.0.0:${PORT}`, credentials.createInsecure()
 );
 
-const clientCallback = (err: Error | undefined) => {
-    if (err) {
-        console.error(err)
-        return
-    }
-    const user: User = {
-        id: 2,
-        firstName: 'Patrik',
-        lastName: 'Zapletal',
-        companyName: 'MBI',
-        email: 'email@email32.cz',
-        password: 'hashedPassword'
-    }
+const bootstrap = async () => {
+    const users = await ImportService.import(path.resolve(__dirname, '../static/users-init.json'));
 
-    client.InsertUser(user, (err, result) => {
-        console.log('running insert user');
-    })
+    console.log(users);
 }
 
 const deadline = new Date()
 deadline.setSeconds(deadline.getSeconds() + 5)
-client.waitForReady(deadline, clientCallback);
+client.waitForReady(deadline, bootstrap);
