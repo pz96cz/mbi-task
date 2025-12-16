@@ -1,26 +1,47 @@
 import { User } from "../proto/user/User";
 import { ServerUnaryCall } from "@grpc/grpc-js";
-import { UserResponse } from "../proto/user/UserResponse";
 import UserService from "../services/userService";
-import { UsersRequest } from "../proto/user/UsersRequest";
-import { UsersResponse } from "../proto/user/UsersResponse";
+import {UsersRequest} from "../proto/user/UsersRequest";
+import {GetUsersBatchRequest} from "../proto/user/GetUsersBatchRequest";
+
 
 /**
  * Controller implementing user.proto contract
  */
 const UsersServiceController = {
-    InsertUser: async (call: ServerUnaryCall<User, any>): Promise<UserResponse> => {
-        const userPayload = call.request;
-        return await UserService.insertUser(userPayload);
+    InsertUsers: async (call: ServerUnaryCall<UsersRequest, any>, callback: any) => {
+        try {
+            const users = call.request.users;
+            const result = await UserService.insertUsers(users);
+
+            callback(null, result);
+        }
+        catch (err) {
+            callback(err, null);
+        }
     },
-    InsertUsers: async (call: ServerUnaryCall<UsersRequest, any>): Promise<UsersResponse> => {
-        const usersPayload = call.request.users;
+    InsertUser: async (call: ServerUnaryCall<User, any>, callback: any) => {
+        try {
+            const user = call.request;
+            const result = await UserService.insertUser(user);
 
-        const result = await UserService.insertUsers(usersPayload);
+            callback(null, result);
+        }
+        catch (err) {
+            callback(err, null);
+        }
 
-        console.log(result);
+    },
+    GetUsersBatchRequest: async (call: ServerUnaryCall<GetUsersBatchRequest, any>, callback: any) => {
+        try {
+            const batchRequest = call.request;
+            const result = await UserService.getUsers(batchRequest);
 
-        return result;
+            callback(null, result);
+        }
+        catch (err) {
+            callback(err, null);
+        }
     }
 }
 

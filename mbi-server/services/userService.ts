@@ -3,10 +3,12 @@ import DatabaseService from "./databaseService";
 import databaseService from "./databaseService";
 import { UserResponse } from "../proto/user/UserResponse";
 import {UsersResponse} from "../proto/user/UsersResponse";
+import {GetUsersBatchRequest} from "../proto/user/GetUsersBatchRequest";
 
 interface IUserService {
     insertUser(user: User): Promise<UserResponse>;
     insertUsers(users: User[]): Promise<UsersResponse>;
+    getUsers(batchRequest: GetUsersBatchRequest): Promise<UsersResponse>
 }
 
 const isEmailAlreadyTaken = async (email: string | undefined): Promise<boolean> => {
@@ -89,6 +91,15 @@ const UserService: IUserService = {
                 users: [],
                 errors: [`There was an error when performing batch insert. Details: ${err}`]
             }
+        }
+    },
+    getUsers: async (batchRequest: GetUsersBatchRequest): Promise<UsersResponse> => {
+        const { limit, offset } = batchRequest;
+        const { data : users } = await DatabaseService.select<User>('users', `&page=${offset}&limit=${limit}&_sort=email&_order=asc`);
+
+        return {
+            users,
+            errors: []
         }
     }
 }

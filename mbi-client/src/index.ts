@@ -4,6 +4,7 @@ import { loadSync } from "@grpc/proto-loader";
 import { ProtoGrpcType as UserGrpcType } from '../proto/user';
 import * as path from "node:path";
 import { User } from "../proto/user/User";
+import { ImportService } from "./services/importService";
 
 const PORT = 8081;
 
@@ -14,133 +15,34 @@ const client = new packageGrpc.user.UsersService(
     `0.0.0.0:${PORT}`, credentials.createInsecure()
 );
 
-
-
-const bootstrap = () => {
-    const users: User[] = [
-        {
-            "id": 1,
-            "firstName": "John",
-            "lastName": "McAbc",
-            "companyName": "Google",
-            "email": "test@google.com",
-            "password": "$fgirehjgfrhgrjij3834877947abc"
-        },
-        {
-            "id": 2,
-            "firstName": "Steve",
-            "lastName": "Ambret",
-            "companyName": "LinkedIn",
-            "email": "test@linkedin.com",
-            "password": "$wfewerferehjg"
-        },
-        {
-            "id": 3,
-            "firstName": "Patrik",
-            "lastName": "Zapletal",
-            "companyName": "Škoda Auto",
-            "email": "patrik@skoda.cz",
-            "password": "$wfewfgife"
-        },
-        {
-            "id": 4,
-            "firstName": "George",
-            "lastName": "Test",
-            "companyName": "Yahoo",
-            "email": "gerorge.test@yahoo.com",
-            "password": "$4Jfhjreughurheg"
-        },
-        {
-            "id": 5,
-            "firstName": "Jan",
-            "lastName": "Novák",
-            "companyName": "Nevim",
-            "email": "email@email.cz",
-            "password": "$hashedPassword"
-        },
-        {
-            "id": 6,
-            "firstName": "Petr",
-            "lastName": "Halo",
-            "companyName": "ČEZ",
-            "email": "petr@cez.cz",
-            "password": "$hashgrgreeedPassword"
-        },
-        {
-            "id": 7,
-            "firstName": "Karel",
-            "lastName": "Nový",
-            "companyName": "MBI",
-            "email": "tohlejemujemail@test.cz",
-            "password": "$hesloNemamHAHA"
-        },
-        {
-            "id": 8,
-            "firstName": "Patrik",
-            "lastName": "Novák",
-            "companyName": "MBI",
-            "email": "email@domain.cz",
-            "password": "$hashedPassword"
-        },{
-            "id": 9,
-            "firstName": "Patrik",
-            "lastName": "Zapletal",
-            "companyName": "MBI",
-            "email": "email@email32.cz",
-            "password": "hashedPassword"
-        },
-        {
-            "id": 10,
-            "firstName": "Patrik",
-            "lastName": "Test",
-            "companyName": "Company",
-            "email": "email@email1.cz",
-            "password": "ABChashedPassword"
-        },
-        {
-            "id": 11,
-            "firstName": "Denis",
-            "lastName": "Test",
-            "companyName": "McDonalds",
-            "email": "email@mcdonalds.cz",
-            "password": "hashedPassword"
-        },
-        {
-            "id": 12,
-            "firstName": "Josef",
-            "lastName": "Novák",
-            "companyName": "ABC",
-            "email": "email@abc.cz.cz",
-            "password": "hashedPassword"
-        },
-        {
-            "id": 13,
-            "firstName": "Patrik",
-            "lastName": "EmailConflict",
-            "companyName": "MBI",
-            "email": "email@email32.cz",
-            "password": "hashedPassword"
-        },
-        {
-            "id": 2,
-            "lastName": "Zapletal",
-            "companyName": "MBI",
-            "email": "email@email32.cz",
-            "password": "hashedPassword"
-        },
-        {
-            "id": 2,
-            "firstName": "Patrik",
-            "lastName": "Zapletal",
-            "companyName": "MBI"
-        }
-    ]
+const bootstrap = async () => {
+    const users: User[] = await ImportService.import(path.resolve(__dirname, '../static/users-init.json'));
 
     client.InsertUsers({ users }, (err, value) => {
-        console.log(value);
+        if (err) {
+            console.log('There was an error during inserting users from users-init.json', err);
+            return;
+        }
+
+        console.log('Inserting users from users-init.json:');
+        console.log('Result:', value);
+
+        client.InsertUser(users[0], (err, value) => {
+            if (err) {
+                console.log('There was an error during inserting first user from users-init.json', err);
+                return;
+            }
+
+            console.log('Inserting first user from users-init.json:');
+            console.log('Result:', value);
+        });
+
+        client.GetUsers({offset: 0, limit: 5}, (err, value) => {
+            console.log(value);
+        })
     });
 }
 
-const deadline = new Date()
-deadline.setSeconds(deadline.getSeconds() + 5)
-client.waitForReady(deadline, bootstrap);
+bootstrap();
+
+

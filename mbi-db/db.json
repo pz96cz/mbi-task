@@ -95,6 +95,14 @@
       "companyName": "ABC",
       "email": "email@abc.cz.cz",
       "password": "hashedPassword"
+    },
+    {
+      "id": 1,
+      "firstName": "John",
+      "lastName": "McAbc",
+      "companyName": "Google",
+      "email": "test@google.com",
+      "password": "$fgirehjgfrhgrjij3834877947abc"
     }
   ]
 }
