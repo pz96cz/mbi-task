@@ -21,14 +21,14 @@ export interface UsersServiceClient extends grpc.Client {
   getUser(argument: _user_GetUserRequest, options: grpc.CallOptions, callback: grpc.requestCallback<_user_UserResponse__Output>): grpc.ClientUnaryCall;
   getUser(argument: _user_GetUserRequest, callback: grpc.requestCallback<_user_UserResponse__Output>): grpc.ClientUnaryCall;
   
-  GetUsers(argument: _user_GetUsersBatchRequest, metadata: grpc.Metadata, options: grpc.CallOptions, callback: grpc.requestCallback<_user_UserResponse__Output>): grpc.ClientUnaryCall;
-  GetUsers(argument: _user_GetUsersBatchRequest, metadata: grpc.Metadata, callback: grpc.requestCallback<_user_UserResponse__Output>): grpc.ClientUnaryCall;
-  GetUsers(argument: _user_GetUsersBatchRequest, options: grpc.CallOptions, callback: grpc.requestCallback<_user_UserResponse__Output>): grpc.ClientUnaryCall;
-  GetUsers(argument: _user_GetUsersBatchRequest, callback: grpc.requestCallback<_user_UserResponse__Output>): grpc.ClientUnaryCall;
-  getUsers(argument: _user_GetUsersBatchRequest, metadata: grpc.Metadata, options: grpc.CallOptions, callback: grpc.requestCallback<_user_UserResponse__Output>): grpc.ClientUnaryCall;
-  getUsers(argument: _user_GetUsersBatchRequest, metadata: grpc.Metadata, callback: grpc.requestCallback<_user_UserResponse__Output>): grpc.ClientUnaryCall;
-  getUsers(argument: _user_GetUsersBatchRequest, options: grpc.CallOptions, callback: grpc.requestCallback<_user_UserResponse__Output>): grpc.ClientUnaryCall;
-  getUsers(argument: _user_GetUsersBatchRequest, callback: grpc.requestCallback<_user_UserResponse__Output>): grpc.ClientUnaryCall;
+  GetUsers(argument: _user_GetUsersBatchRequest, metadata: grpc.Metadata, options: grpc.CallOptions, callback: grpc.requestCallback<_user_UsersResponse__Output>): grpc.ClientUnaryCall;
+  GetUsers(argument: _user_GetUsersBatchRequest, metadata: grpc.Metadata, callback: grpc.requestCallback<_user_UsersResponse__Output>): grpc.ClientUnaryCall;
+  GetUsers(argument: _user_GetUsersBatchRequest, options: grpc.CallOptions, callback: grpc.requestCallback<_user_UsersResponse__Output>): grpc.ClientUnaryCall;
+  GetUsers(argument: _user_GetUsersBatchRequest, callback: grpc.requestCallback<_user_UsersResponse__Output>): grpc.ClientUnaryCall;
+  getUsers(argument: _user_GetUsersBatchRequest, metadata: grpc.Metadata, options: grpc.CallOptions, callback: grpc.requestCallback<_user_UsersResponse__Output>): grpc.ClientUnaryCall;
+  getUsers(argument: _user_GetUsersBatchRequest, metadata: grpc.Metadata, callback: grpc.requestCallback<_user_UsersResponse__Output>): grpc.ClientUnaryCall;
+  getUsers(argument: _user_GetUsersBatchRequest, options: grpc.CallOptions, callback: grpc.requestCallback<_user_UsersResponse__Output>): grpc.ClientUnaryCall;
+  getUsers(argument: _user_GetUsersBatchRequest, callback: grpc.requestCallback<_user_UsersResponse__Output>): grpc.ClientUnaryCall;
   
   InsertUser(argument: _user_User, metadata: grpc.Metadata, options: grpc.CallOptions, callback: grpc.requestCallback<_user_UserResponse__Output>): grpc.ClientUnaryCall;
   InsertUser(argument: _user_User, metadata: grpc.Metadata, callback: grpc.requestCallback<_user_UserResponse__Output>): grpc.ClientUnaryCall;
@@ -62,7 +62,7 @@ export interface UsersServiceClient extends grpc.Client {
 export interface UsersServiceHandlers extends grpc.UntypedServiceImplementation {
   GetUser: grpc.handleUnaryCall<_user_GetUserRequest__Output, _user_UserResponse>;
   
-  GetUsers: grpc.handleUnaryCall<_user_GetUsersBatchRequest__Output, _user_UserResponse>;
+  GetUsers: grpc.handleUnaryCall<_user_GetUsersBatchRequest__Output, _user_UsersResponse>;
   
   InsertUser: grpc.handleUnaryCall<_user_User__Output, _user_UserResponse>;
   
@@ -74,7 +74,7 @@ export interface UsersServiceHandlers extends grpc.UntypedServiceImplementation 
 
 export interface UsersServiceDefinition extends grpc.ServiceDefinition {
   GetUser: MethodDefinition<_user_GetUserRequest, _user_UserResponse, _user_GetUserRequest__Output, _user_UserResponse__Output>
-  GetUsers: MethodDefinition<_user_GetUsersBatchRequest, _user_UserResponse, _user_GetUsersBatchRequest__Output, _user_UserResponse__Output>
+  GetUsers: MethodDefinition<_user_GetUsersBatchRequest, _user_UsersResponse, _user_GetUsersBatchRequest__Output, _user_UsersResponse__Output>
   InsertUser: MethodDefinition<_user_User, _user_UserResponse, _user_User__Output, _user_UserResponse__Output>
   InsertUsers: MethodDefinition<_user_UsersRequest, _user_UsersResponse, _user_UsersRequest__Output, _user_UsersResponse__Output>
   LoginRequest: MethodDefinition<_user_LoginRequest, _user_LoginResponse, _user_LoginRequest__Output, _user_LoginResponse__Output>

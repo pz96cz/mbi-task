@@ -3,8 +3,8 @@ import axios, {AxiosResponse} from "axios";
 const DB_HOST = 'http://localhost:3000';
 
 interface IDatabaseService {
-    insert<T>(entityName: string, entityData: T | T[]) : Promise<AxiosResponse<T>>;
-    select<T>(entityName: string, selectParams?: string) : Promise<AxiosResponse<T[]>>;
+    insert<T>(entityName: string, entityData: T) : Promise<AxiosResponse<T>>;
+    select<T>(entityName: string, selectParams?: string) : Promise<AxiosResponse<T | T[]>>;
 }
 
 const DatabaseService: IDatabaseService = {
