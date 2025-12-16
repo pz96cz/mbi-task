@@ -6,7 +6,7 @@ service UsersService {
   rpc InsertUser(User) returns (UserResponse) {}
   rpc InsertUsers(UsersRequest) returns (UsersResponse) {}
   rpc GetUser(GetUserRequest) returns (UserResponse) {}
-  rpc GetUsers(GetUsersBatchRequest) returns(UserResponse) {}
+  rpc GetUsers(GetUsersBatchRequest) returns(UsersResponse) {}
   rpc LoginRequest(LoginRequest) returns(LoginResponse) {}
 }
 

@@ -11,9 +11,18 @@ interface IUserService {
     getUsers(batchRequest: GetUsersBatchRequest): Promise<UsersResponse>
 }
 
+interface IPaginationResponse  {
+    first: number | null;
+    prev: number | null;
+    last: number;
+    pages: number;
+    items: number;
+    data: User[];
+}
+
 const isEmailAlreadyTaken = async (email: string | undefined): Promise<boolean> => {
     try {
-        const { data } = await DatabaseService.select<User>('users', `email=${email}`);
+        const { data } = await DatabaseService.select<User[]>('users', `email=${email}`);
 
         return !!data.length;
     }
@@ -94,13 +103,22 @@ const UserService: IUserService = {
         }
     },
     getUsers: async (batchRequest: GetUsersBatchRequest): Promise<UsersResponse> => {
-        const { limit, offset } = batchRequest;
-        const { data : users } = await DatabaseService.select<User>('users', `&page=${offset}&limit=${limit}&_sort=email&_order=asc`);
+        try {
+            const { limit, offset } = batchRequest;
+            const { data : paginationResponse } = await DatabaseService.select<IPaginationResponse>('users', `&_page=${offset}&_per_page=${limit}&_sort=email&_order=asc`);
 
-        return {
-            users,
-            errors: []
+            return {
+                users: (paginationResponse as IPaginationResponse).data,
+                errors: []
+            }
         }
+        catch (err) {
+            return {
+                users: [],
+                errors: [`There was an error when getting users. Details: ${err}`]
+            }
+        }
+
     }
 }
 

@@ -32,7 +32,7 @@ const UsersServiceController = {
         }
 
     },
-    GetUsersBatchRequest: async (call: ServerUnaryCall<GetUsersBatchRequest, any>, callback: any) => {
+    GetUsers: async (call: ServerUnaryCall<GetUsersBatchRequest, any>, callback: any) => {
         try {
             const batchRequest = call.request;
             const result = await UserService.getUsers(batchRequest);
