@@ -174,29 +174,18 @@ const UserService: IUserService = {
 
             const isPasswordCorrect = await bcrypt.compare(password as string, user.password as string);
 
-            if (isPasswordCorrect) {
-                const token = sign(
-                    {
-                        data: {
-                            userId: user.id
-                        }
-                    },
-                    'privateKey',
-                    {
-                        expiresIn: 60 * 60
-                    }
-                );
-
-                return {
-                    token,
-                    errors: []
-                }
-            }
-            else {
+            if (!isPasswordCorrect) {
                 return {
                     token: undefined,
                     errors: ["Token couldn't be generated because the combination of email and password is not correct."]
                 }
+            }
+
+            const token = sign({ data: { userId: user.id } }, 'privateKey', { expiresIn: 60 * 60 });
+
+            return {
+                token,
+                errors: []
             }
         }
         catch(err) {
