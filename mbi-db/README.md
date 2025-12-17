@@ -1,4 +1,4 @@
-#How to run DB server
+# How to run DB server
 
 Steps:
 
