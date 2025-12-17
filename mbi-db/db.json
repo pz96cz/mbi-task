@@ -1,5 +1,100 @@
 {
   "users": [
-
+    {
+      "id": "1f01",
+      "firstName": "John",
+      "lastName": "McAbc",
+      "companyName": "Google",
+      "email": "test@google.com",
+      "password": "$2b$04$nGbVE..1dwQ4orf17W.Ideb1Ofur4C8/sjFJUwOWzm7C6pUk2frHS"
+    },
+    {
+      "id": "da17",
+      "firstName": "Steve",
+      "lastName": "Ambret",
+      "companyName": "LinkedIn",
+      "email": "test@linkedin.com",
+      "password": "$2b$04$DkRkwotNIkPe8.q71jjKjuKoy5apDUzdj1fx.nCNtjlqId/kpTw4W"
+    },
+    {
+      "id": "ab69",
+      "firstName": "Patrik",
+      "lastName": "Zapletal",
+      "companyName": "Škoda Auto",
+      "email": "patrik@skoda.cz",
+      "password": "$2b$04$1BMRPTW/Wh3BIgcI0WPCEO1Y3iOvDfm8dFKWqU0xRfty3OEZjxxWy"
+    },
+    {
+      "id": "9d5b",
+      "firstName": "George",
+      "lastName": "Test",
+      "companyName": "Yahoo",
+      "email": "gerorge.test@yahoo.com",
+      "password": "$2b$04$6PRFJoObYyahAi8E/w1tw.VBFyZIoL2/AlBIFW8A9SOIwyuXsY86W"
+    },
+    {
+      "id": "b15d",
+      "firstName": "Jan",
+      "lastName": "Novák",
+      "companyName": "Nevim",
+      "email": "email@email.cz",
+      "password": "$2b$04$K9AQnK7Kwwz7S5S72RXpIOWHlnZ2ZPlryTsOy./TOc/dhz7BA2c0."
+    },
+    {
+      "id": "de51",
+      "firstName": "Petr",
+      "lastName": "Halo",
+      "companyName": "ČEZ",
+      "email": "petr@cez.cz",
+      "password": "$2b$04$GVJOZQVb1C2wu5IY4W4AiOqYwKUCoc8KW6SGEbZjQYlbgtZK4R.6S"
+    },
+    {
+      "id": "23f6",
+      "firstName": "Karel",
+      "lastName": "Nový",
+      "companyName": "MBI",
+      "email": "tohlejemujemail@test.cz",
+      "password": "$2b$04$1RrfmWfq6/DzwXQ7W3D8r.gUaytx/wfhJ7dg54RD8XocueoxySy7q"
+    },
+    {
+      "id": "7318",
+      "firstName": "Patrik",
+      "lastName": "Novák",
+      "companyName": "MBI",
+      "email": "email@domain.cz",
+      "password": "$2b$04$7LvCMoyYojkMDA.eQxqY0ekSa.9yPXGa5MQAA.XUI.NOOD0dKKiSq"
+    },
+    {
+      "id": "c8be",
+      "firstName": "Patrik",
+      "lastName": "Zapletal",
+      "companyName": "MBI",
+      "email": "email@email32.cz",
+      "password": "$2b$04$vGp5hjwpn3r60uhexWuYkOuUTyBxPnquvYnU.iGM/Z6TES9FfwLUu"
+    },
+    {
+      "id": "b35e",
+      "firstName": "Patrik",
+      "lastName": "Test",
+      "companyName": "Company",
+      "email": "email@email1.cz",
+      "password": "$2b$04$eyrJsNwWt1EJFKgERNaVWOr8cROJA5RyoWdNrdaOXpI3yvalK3022"
+    },
+    {
+      "id": "d21f",
+      "firstName": "Denis",
+      "lastName": "Test",
+      "companyName": "McDonalds",
+      "email": "email@mcdonalds.cz",
+      "password": "$2b$04$1bHi9Q8PHRty/9lBtLdVT.M/9gWA0lhhLcGjYgW/H3BhuDWfnfjXa"
+    },
+    {
+      "id": "1a44",
+      "firstName": "Josef",
+      "lastName": "Novák",
+      "companyName": "ABC",
+      "email": "email@abc.cz.cz",
+      "password": "$2b$04$.pxUD4mLvCwYkrzqLLR7m.CL50flGd3CD2PUIBRiMH6I3a8Ozosxm"
+    }
   ]
 }

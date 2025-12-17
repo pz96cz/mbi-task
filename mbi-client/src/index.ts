@@ -3,8 +3,8 @@ import { credentials, loadPackageDefinition } from '@grpc/grpc-js';
 import { loadSync } from "@grpc/proto-loader";
 import { ProtoGrpcType as UserGrpcType } from '../proto/user';
 import * as path from "node:path";
-import {ImportService} from "./services/importService";
-import {User} from "../proto/user/User";
+import { ImportService } from "./services/importService";
+import { User } from "../proto/user/User";
 
 const PORT = 8081;
 

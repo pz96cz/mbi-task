@@ -1,14 +1,14 @@
-import { User } from "../proto/user/User";
+import { User } from "../../proto/user/User";
 import DatabaseService from "./databaseService";
 import databaseService from "./databaseService";
-import { UserResponse } from "../proto/user/UserResponse";
-import { UsersResponse } from "../proto/user/UsersResponse";
-import { GetUsersBatchRequest } from "../proto/user/GetUsersBatchRequest";
-import { GetUserRequest } from "../proto/user/GetUserRequest";
+import { UserResponse } from "../../proto/user/UserResponse";
+import { UsersResponse } from "../../proto/user/UsersResponse";
+import { GetUsersBatchRequest } from "../../proto/user/GetUsersBatchRequest";
+import { GetUserRequest } from "../../proto/user/GetUserRequest";
 import bcrypt from 'bcrypt';
-import {LoginRequest} from "../proto/user/LoginRequest";
-import {LoginResponse} from "../proto/user/LoginResponse";
-import { sign, decode, verify } from 'jsonwebtoken'
+import { LoginRequest } from "../../proto/user/LoginRequest";
+import { LoginResponse } from "../../proto/user/LoginResponse";
+import { sign } from 'jsonwebtoken'
 
 
 interface IUserService {

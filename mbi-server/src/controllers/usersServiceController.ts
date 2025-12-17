@@ -1,11 +1,10 @@
-import { User } from "../proto/user/User";
+import { User } from "../../proto/user/User";
 import { ServerUnaryCall } from "@grpc/grpc-js";
 import UserService from "../services/userService";
-import {UsersRequest} from "../proto/user/UsersRequest";
-import {GetUsersBatchRequest} from "../proto/user/GetUsersBatchRequest";
-import {GetUserRequest} from "../proto/user/GetUserRequest";
-import {LoginRequest} from "../proto/user/LoginRequest";
-
+import { UsersRequest } from "../../proto/user/UsersRequest";
+import { GetUsersBatchRequest } from "../../proto/user/GetUsersBatchRequest";
+import { GetUserRequest } from "../../proto/user/GetUserRequest";
+import { LoginRequest } from "../../proto/user/LoginRequest";
 
 /**
  * Controller implementing user.proto contract

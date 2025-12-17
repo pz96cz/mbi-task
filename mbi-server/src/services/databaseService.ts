@@ -1,4 +1,4 @@
-import axios, {AxiosResponse} from "axios";
+import axios, { AxiosResponse } from "axios";
 
 const DB_HOST = 'http://localhost:3000';
 
