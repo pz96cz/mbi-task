@@ -1,4 +1,4 @@
-#How to run gRPC client
+# How to run gRPC client
 
 1. If you do any change in proto/user.proto you have to regenerate the typescript definitions. If so, first delete the
    content of proto folder in the mbi-client folder and run following command
