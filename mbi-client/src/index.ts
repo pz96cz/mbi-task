@@ -5,17 +5,19 @@ import { ProtoGrpcType as UserGrpcType } from '../proto/user';
 import * as path from "node:path";
 import { ImportService } from "./services/importService";
 import { User } from "../proto/user/User";
+import { spawnAPI } from "./api";
 
-const PORT = 8081;
+const SERVER_PORT = 8081;
 
 const packageDef = loadSync(path.resolve(__dirname, '../../proto/user/user.proto'));
 const packageGrpc = (loadPackageDefinition(packageDef) as unknown) as UserGrpcType;
 
 const client = new packageGrpc.user.UsersService(
-    `0.0.0.0:${PORT}`, credentials.createInsecure()
+    `0.0.0.0:${SERVER_PORT}`, credentials.createInsecure()
 );
 
-const bootstrap = async () => {
+
+const start = async () => {
     const users: User[] = await ImportService.import(path.resolve(__dirname, '../static/users-init.json'));
 
     console.log('Inserting batch of users from users-init.json file.');
@@ -80,6 +82,7 @@ const bootstrap = async () => {
     });
 }
 
-bootstrap();
+start();
+spawnAPI(client);
 
 

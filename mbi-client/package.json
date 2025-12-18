@@ -12,6 +12,8 @@
   "dependencies": {
     "@grpc/grpc-js": "^1.8.0",
     "@grpc/proto-loader": "^0.8.0",
+    "@types/express": "^5.0.6",
+    "express": "^5.2.1",
     "fs": "^0.0.1-security",
     "ts-node": "^10.9.2"
   },
